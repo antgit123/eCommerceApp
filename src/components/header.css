@@ -5,3 +5,19 @@
 .header-icon{
     margin-right: 4px;
 }
+
+.header-link{
+    color: white;
+}
+
+.header-link:hover{
+    color: white;
+}
+
+.header-link a{
+    color: white;
+}
+
+.header-link a:hover{
+    color: white;
+}
