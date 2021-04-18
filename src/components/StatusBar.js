@@ -1,25 +1,34 @@
 import styles from "./StatusBar.css";
-import {useDispatch, useSelector} from "react-redux";
 import {Component} from 'react';
+import { connect} from 'react-redux';
 
-export function StatusBar(props) {
-    const appStatus = useSelector((state) => state.status);
-    const dispatch = useDispatch();
-    const loadErrors = appStatus.hasError;
-    console.log("Error"+ appStatus.hasError);
-    const statusClass = loadErrors ? styles.error: styles.success;
-    const handleRetry = () => {
-
-    };
-    if(loadErrors) {
-        return (
-            <div className={statusClass}>
-                <span> {appStatus.message} </span>
-                <button onClick={handleRetry}>retry</button>
-            </div>
-        );
+class StatusBar extends Component {
+    constructor(){
+        super();
     }
-    return(
-        <div/>
-    )
+    render() {
+        const {status} = this.props;
+        const loadErrors = status.hasError;
+        const statusClass = loadErrors ? styles.error: styles.success;
+        if (loadErrors) {
+            return (
+                <div className={statusClass}>
+                    <span> {status.message} </span>
+                    <button>retry</button>
+                </div>
+            );
+        }
+        return (
+            <div/>
+        )
+    }
 }
+
+const mapStateToProps = (state) =>{
+    return{
+        status: state.status
+    };
+};
+
+export default connect(mapStateToProps,{
+}) (StatusBar);

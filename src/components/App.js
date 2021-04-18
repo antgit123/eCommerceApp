@@ -4,7 +4,6 @@ import HomePage  from '../components/Home/HomePage';
 import ViewUserProfile from '../components/ViewUserProfile';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
-import { StatusBar } from '../components/StatusBar';
 import ViewCart from '../components/Cart/ViewCart';
 import { connect } from 'react-redux';
 
@@ -15,7 +14,6 @@ export default class App extends Component {
         return (
             <BrowserRouter>
                 <Header/>
-                <StatusBar/>
                 <Route path='/' exact component={HomePage} />
                 <Route path='/user' exact component={ViewUserProfile} />
                 <Route path='/cart' exact component={ViewCart} />

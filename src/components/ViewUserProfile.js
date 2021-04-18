@@ -3,7 +3,7 @@ import {Container,Row,Nav,Col,Navbar,Image,Button, Form, Spinner} from 'react-bo
 import { fetchUserProfile, updateUserProfile } from "../actions/UserActions";
 import { connect} from 'react-redux';
 import './UserProfile.css';
-import {StatusBar} from "./StatusBar";
+import StatusBar from "./StatusBar";
 
 class ViewUserProfile extends Component {
     constructor(){
