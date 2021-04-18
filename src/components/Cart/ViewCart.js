@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Container,Row, Col, Spinner,Image} from 'react-bootstrap';
-import { fetchCart,fetchCartAndProducts } from "../../actions/CartActions";
-import { fetchProducts } from "../../actions/ProductActions";
+import { Row, Col, Spinner } from 'react-bootstrap';
+import { fetchCartAndProducts } from "../../actions/CartActions";
 import { connect} from 'react-redux';
-import CartList from './CartList';
+import CartCard from './CartCard';
 
 class ViewCart extends Component {
     constructor(){
@@ -57,33 +56,8 @@ class ViewCart extends Component {
                                             <h5 style={{width: "100%"}}>Cart {userCart.id}</h5>
                                                 <hr/>
                                             {
-                                                userCart.products.map(product=>{
-                                                    return (<Row key={product.productId}>
-
-                                                            <Col md={4}>
-                                                                <Image src={product.image} width="200" height="200"/>
-                                                            </Col>
-                                                            <Col md={4}>
-                                                                <Row>
-                                                                    <h6>{product.title}</h6>
-                                                                </Row>
-                                                                <Row>
-                                                                    <Col md={6}>
-                                                                        <p>$ {product.price}</p>
-                                                                    </Col>
-                                                                    <Col md={6}>
-                                                                        <p>Quantity: {product.quantity}</p>
-                                                                    </Col>
-                                                                </Row>
-
-                                                            </Col>
-                                                            <Col md={4}>
-                                                                <Row>
-                                                                    Total: $ {product.quantity * product.price}
-                                                                </Row>
-                                                            </Col>
-                                                        </Row>
-                                                    )
+                                                userCart.products.map(product=> {
+                                                    return <CartCard product={product}/>
                                                 })
                                             }
                                             </div>
@@ -91,7 +65,6 @@ class ViewCart extends Component {
                                     )
                                 })
                             }
-                            <CartList/>
                         </Col>
                         <Col md={3}>
 

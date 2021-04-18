@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 import {Container,Row,Nav,Col,Navbar,Image,Button, Form, Spinner} from 'react-bootstrap';
 import { fetchUserProfile, updateUserProfile } from "../actions/UserActions";
 import { connect} from 'react-redux';
-import './UserNav.css';
+import './UserProfile.css';
+import {StatusBar} from "./StatusBar";
 
 class ViewUserProfile extends Component {
     constructor(){
         super();
-        this.state = {loading: true};
+        this.state = {
+            loading: true,
+            username: '',
+            firstname: '',
+            lastname: '',
+            email: '',
+            password: '',
+            city: '',
+            zipcode: '',
+            street: '',
+            phone: ''
+        };
     }
 
     componentDidMount(){
@@ -15,29 +27,29 @@ class ViewUserProfile extends Component {
         this.setState({loading: false});
     }
 
-    handleUserFormSubmit =(form) => {
-       const obj =  {
-            email:'John@gmail.com',
-                username:'johnd',
-            password:'m38rmF$',
+    handleUserFormSubmit =(e) => {
+        e.preventDefault();
+        const userObj = {
+            email: this.state.email,
+            username: this.state.username,
+            password: this.state.password,
             name:{
-            firstname:'John',
-                lastname:'Doe'
+                firstname: this.state.firstname,
+                lastname: this.state.lastname
             },
             address:{
-                city:'kilcoole',
-                    street:'7835 new road',
-                    number:3,
-                    zipcode:'12926-3874',
-                    geolocation:{
+                city: this.state.city,
+                street: this.state.street,
+                number:3,
+                zipcode: this.state.zipcode,
+                geolocation:{
                     lat:'-37.3159',
-                        long:'81.1496'
+                    long:'81.1496'
                 }
             },
-            phone:'1-570-236-7033'
-        }
-        const userObj = {};
-
+            phone: this.state.phone
+        };
+        this.props.updateUser(1,userObj);
     };
 
     render() {
@@ -55,6 +67,9 @@ class ViewUserProfile extends Component {
         const {city, street, zipcode} = userProfile.user.address;
         return (
             <Row className="mx-4">
+                <Row>
+                    <StatusBar/>
+                </Row>
                 <Col md={3}>
                     <h4>My Account</h4>
                     <Navbar className="container-fluid" bg="light">
@@ -68,7 +83,7 @@ class ViewUserProfile extends Component {
                 <Col md={9}>
                     <Container>
                         <Row style={{margin:"8px"}}>
-                            <Image rounded src="https://randomuser.me/api/portraits/men/1.jpg"/>
+                            <Image src="https://randomuser.me/api/portraits/men/1.jpg"/>
                         </Row>
                         <Row style={{margin:"8px"}}>
                             <Button>Change Photo</Button>
@@ -79,45 +94,54 @@ class ViewUserProfile extends Component {
                             <Form.Row>
                                 <Form.Group as={Col} controlId="userFirstName">
                                     <Form.Label>First Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter First Name" defaultValue={firstname}/>
+                                    <Form.Control type="text" placeholder="Enter First Name"
+                                                  onChange={e => this.setState({firstname: e.target.value})}
+                                                  defaultValue={firstname}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="userLastName">
                                     <Form.Label>Last Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Password" defaultValue={lastname} />
+                                    <Form.Control type="text" placeholder="Password"
+                                                  onChange={(e) => this.setState({lastname: e.target.value})} defaultValue={lastname} />
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
                                 <Form.Group as={Col} controlId="userEmail">
                                     <Form.Label>Email Address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email" defaultValue={email}/>
+                                    <Form.Control type="email" placeholder="Enter email"
+                                                  onChange={(e) => this.setState({email: e.target.value})} defaultValue={email}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="userLastName">
                                     <Form.Label>Username</Form.Label>
-                                    <Form.Control type="text" placeholder="Password" defaultValue={username} />
+                                    <Form.Control
+                                        onChange={(e) => this.setState({username: e.target.value})}
+                                        type="text" placeholder="Password" defaultValue={username} />
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridPassword">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" defaultValue={password} />
+                                    <Form.Control type="password" placeholder="Password"
+                                                  onChange={(e) => this.setState({password: e.target.value})} defaultValue={password} />
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Group controlId="userAddress1">
+                            <Form.Group controlId="userPhone">
                                 <Form.Label>Phone</Form.Label>
-                                <Form.Control type="number" placeholder="10 Main St" defaultValue={phone}/>
+                                <Form.Control type="number" placeholder="042611132"
+                                              onChange={(e) => this.setState({PHONE: e.target.value})} defaultValue={phone}/>
                             </Form.Group>
 
                             <Form.Group controlId="userAddress1">
                                 <Form.Label>Address</Form.Label>
-                                <Form.Control placeholder="10 Main St" defaultValue={street}/>
+                                <Form.Control placeholder="10 Main St"
+                                              onChange={(e) => this.setState({street: e.target.value})} defaultValue={street}/>
                             </Form.Group>
 
                             <Form.Row>
                                 <Form.Group as={Col} controlId="formGridCity">
                                     <Form.Label>City</Form.Label>
-                                    <Form.Control  defaultValue={city}/>
+                                    <Form.Control  onChange={(e) => this.setState({city: e.target.value})} defaultValue={city}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridState">
@@ -130,15 +154,15 @@ class ViewUserProfile extends Component {
 
                                 <Form.Group as={Col} controlId="formGridZip">
                                     <Form.Label>Zip</Form.Label>
-                                    <Form.Control defaultValue={zipcode}/>
+                                    <Form.Control
+                                        onChange={(e) => this.setState({zipcode: e.target.value})} defaultValue={zipcode}/>
                                 </Form.Group>
                             </Form.Row>
-                            <Button variant="primary" type="submit" onSubmit={() => this.handleUserFormSubmit()}>
+                            <Button variant="primary" type="submit" onClick={(e) => this.handleUserFormSubmit(e)}>
                                 Save Changes
                             </Button>
                         </Form>
                     </Row>
-
                 </Col>
             </Row>
         );

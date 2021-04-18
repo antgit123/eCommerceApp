@@ -26,14 +26,15 @@ export const updateUserProfile = (userId,user) => async dispatch => {
         message: "Failed to update user...Please try again"
     };
     try{
-        fetch(USER_URL+ userId, {
+        const updateUserResponse = await fetch(USER_URL+ userId, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(user)
-        }).then(
+        });
+        updateUserResponse.json().then(
             response => {
                 if (response.status === 200) {
                     return dispatch({

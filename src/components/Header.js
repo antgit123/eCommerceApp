@@ -12,7 +12,7 @@ const Header = () =>{
         <Navbar collapseOnSelect className="headerNav" bg="light" expand="lg">
             {/*<Navbar.Brand href="#home">E-Commerce</Navbar.Brand>*/}
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            <Navbar.Collapse className="navItems" id="basic-navbar-nav">
                 <Nav.Link>
                     <NavLink to="/">
                         Products
