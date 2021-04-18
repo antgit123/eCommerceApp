@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import ProductList  from '../Product/ProductList';
-import  HomeMenu  from './HomeMenu';
 
 export default class HomePage extends Component {
 
@@ -14,9 +13,6 @@ export default class HomePage extends Component {
         return (
             <Container fluid>
                 <Row>
-                    {/*<Col sm={3}>*/}
-                          {/*<HomeMenu/>*/}
-                    {/*</Col>*/}
                     <Col>
                         <div className="appContainer">
                             <ProductList/>

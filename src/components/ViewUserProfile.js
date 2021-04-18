@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Container,Row,Nav,Col,Navbar,Image,Button, Form, Spinner} from 'react-bootstrap';
 import { fetchUserProfile, updateUserProfile } from "../actions/UserActions";
 import { connect} from 'react-redux';
-import './UserProfile.css';
 import StatusBar from "./StatusBar";
 
 class ViewUserProfile extends Component {

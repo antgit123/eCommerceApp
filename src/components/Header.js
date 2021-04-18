@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
 import {  Nav, Navbar,NavDropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import {Row} from 'react-bootstrap';
 import './header.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faShoppingCart,faUserCircle, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 
 const Header = () =>{
     return (
@@ -15,15 +16,18 @@ const Header = () =>{
             <Navbar.Collapse className="navItems" id="basic-navbar-nav">
                 <Nav.Link>
                     <NavLink to="/">
+                        <FontAwesomeIcon icon={faShoppingBag} className="header-icon"/>
                         Products
                     </NavLink>
                 </Nav.Link>
                 <Nav.Link>
+                    <FontAwesomeIcon icon={faShoppingCart} className="header-icon"/>
                     <NavLink to="/cart">
                         Cart
                     </NavLink>
                 </Nav.Link>
                 <Nav.Link>
+                    <FontAwesomeIcon icon={faUserCircle} className="header-icon"/>
                     <NavLink to="/user">User Profile</NavLink>
                 </Nav.Link>
             </Navbar.Collapse>
