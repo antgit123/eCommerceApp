@@ -6,7 +6,7 @@ The application is deployed using AWS Amplify and can be viewed on --> https://m
 
 # Steps to run the application:
 
-This is a create-react-app application. More information about the application documentation can be viewed in Readme.MD file in master branch directory
+This is a create-react-app application. More information about the application documentation and application code  can be viewed in Readme.MD file in master branch directory
 1. Install node package manager and node Js https://docs.npmjs.com/about-npm https://nodejs.org/en/
 2. Install dependencies using npm install command
 3. Run script npm start to view application in local mode 
