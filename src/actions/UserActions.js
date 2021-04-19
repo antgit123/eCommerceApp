@@ -34,23 +34,20 @@ export const updateUserProfile = (userId,user) => async dispatch => {
             },
             body: JSON.stringify(user)
         });
-        updateUserResponse.json().then(
-            response => {
-                if (response.status === 200) {
-                    return dispatch({
-                        type: UPDATE_USER,
-                        payload: {
-                            hasError: false,
-                            message: "User details updated successfully!"
-                        }
-                    })
-                }else{
-                    dispatch({
-                        type: UPDATE_USER_FAIL,
-                        payload: errorObj
-                    })
+        if (updateUserResponse.status === 200) {
+            return dispatch({
+                type: UPDATE_USER,
+                payload: {
+                    hasError: false,
+                    message: "User details updated successfully!"
                 }
             })
+        }else{
+            dispatch({
+                type: UPDATE_USER_FAIL,
+                payload: errorObj
+            })
+        }
     }catch(e){
         dispatch({
             type: UPDATE_USER_FAIL,

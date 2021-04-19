@@ -66,9 +66,6 @@ class ViewUserProfile extends Component {
         const {city, street, zipcode} = userProfile.user.address;
         return (
             <Row className="mx-4">
-                <Row>
-                    <StatusBar/>
-                </Row>
                 <Col md={3}>
                     <h4>My Account</h4>
                     <Navbar className="container-fluid" bg="light">

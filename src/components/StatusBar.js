@@ -1,32 +1,33 @@
-import styles from "./StatusBar.css";
+import "./StatusBar.css";
 import {Component} from 'react';
 import { connect} from 'react-redux';
+import {Row } from 'react-bootstrap';
 
 class StatusBar extends Component {
     constructor(){
         super();
     }
     render() {
-        const {status} = this.props;
-        const loadErrors = status.hasError;
-        const statusClass = loadErrors ? styles.error: styles.success;
-        if (loadErrors) {
+        const {statusObj} = this.props;
+        if(!statusObj.status){
             return (
-                <div className={statusClass}>
-                    <span> {status.message} </span>
-                    <button>retry</button>
-                </div>
-            );
+                <div/>
+            )
         }
+        const loadErrors = statusObj.status.hasError;
+        const statusClass = loadErrors ? "error": "success";
+
         return (
-            <div/>
-        )
+            <Row className={`mx-4 ${statusClass}`}>
+                <span> {statusObj.status.message} </span>
+            </Row>
+        );
     }
 }
 
 const mapStateToProps = (state) =>{
     return{
-        status: state.status
+        statusObj: state.status
     };
 };
 

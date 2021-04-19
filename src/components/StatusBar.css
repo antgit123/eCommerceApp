@@ -12,6 +12,8 @@
     letter-spacing: 0.2px;
     line-height: 1.5;
     color: hsla(225, 30%, 15%, 0.85);
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .success {
@@ -28,4 +30,6 @@
     letter-spacing: 0.2px;
     line-height: 1.5;
     color: hsla(225, 30%, 15%, 0.85);
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
